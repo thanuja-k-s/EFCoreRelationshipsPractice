@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Project Path="EFCoreRelationshipsPractice.IntegrationTests/EFCoreRelationshipsPractice.IntegrationTests.csproj" />
+  <Project Path="EFCoreRelationshipsPractice.Tests/EFCoreRelationshipsPractice.Tests.csproj" />
+  <Project Path="EFCoreRelationshipsPractice/EFCoreRelationshipsPractice.csproj" />
+</Solution>
