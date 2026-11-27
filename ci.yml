@@ -1,0 +1,47 @@
+
+name: .NET CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-publish:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0
+
+      - name: Restore dependencies
+        run: dotnet restore EFCorePractice.slnx
+
+      - name: Build solution
+        run: dotnet build EFCorePractice.slnx --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test EFCorePractice.slnx --configuration Release --no-build
+
+      - name: Publish API
+        run: dotnet publish EFCoreRelationshipsPractice/EFCoreRelationshipsPractice.csproj --configuration Release --no-build --output ./publish
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EFCoreRelationshipsPractice-build
+          path: ./publish/
+          retention-days: 7
